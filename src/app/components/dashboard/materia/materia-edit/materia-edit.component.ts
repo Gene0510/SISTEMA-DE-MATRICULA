@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NuevaMateria } from '../../../../models/materia';
-import { MateriaService } from '../../../../services/materia.service';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { FormsModule } from '@angular/forms';
+import { NuevaMateria } from '../../../../models/materia';
+import { MateriaService } from '../../../../services/materia.service';
 // Sweetalert -> para las alertas
 import Swal from 'sweetalert2';
 

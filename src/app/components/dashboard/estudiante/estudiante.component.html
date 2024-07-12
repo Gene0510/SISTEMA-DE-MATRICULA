@@ -16,7 +16,7 @@
         </div>
         <div class="col-lg-6 col-md-6">
           <label for="buscadorCedula" class="form-label">Cédula:</label>
-          <input id="buscadorCedula" type="text" class="form-control" [(ngModel)]="cedula" placeholder="Buscar por cédula del estudiante" />
+          <input id="buscadorCedula" type="text" class="form-control" [(ngModel)]="cedula" placeholder="Buscar por cédula del estudiante" (keypress)="isNumberKey($event)" />
         </div>
       </div>
     </div>
@@ -64,8 +64,7 @@
                   </tr>
                 </tbody>
               </table>
-              <pagination-controls class="text-center" (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
-              </pagination-controls>
+              <pagination-controls class="text-center" (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
             </div>
           </div>
         </div>

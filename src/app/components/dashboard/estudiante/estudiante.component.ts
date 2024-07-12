@@ -64,4 +64,11 @@ export class EstudianteComponent implements OnInit {
       }
     });
   }
+
+  isNumberKey(event: KeyboardEvent) {
+    const charCode = event.charCode;
+    if (charCode !== 0 && (charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+    }
+  }
 }

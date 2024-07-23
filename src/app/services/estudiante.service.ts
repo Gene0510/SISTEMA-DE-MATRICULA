@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Estudiante } from '../models/estudiante';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { Estudiante, ViewEstudiantes } from '../models/estudiante';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +21,8 @@ export class EstudianteService {
     return this.httpClient.get<Estudiante[]>(`${this.estudianteURL}`);
   }
 
-  getEstudianteDetail(id_estudiante: number): Observable<Estudiante> {
-    return this.httpClient.get<Estudiante>(`${this.estudianteURL}${id_estudiante}`);
+  getEstudianteDetail(id_estudiante: number): Observable<ViewEstudiantes> {
+    return this.httpClient.get<ViewEstudiantes>(`${this.estudianteURL}${id_estudiante}`);
   }
 
   updateEstudiante(id_estudiante: number, estudiante: Estudiante): Observable<any> {

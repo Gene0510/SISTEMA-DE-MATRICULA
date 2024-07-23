@@ -1,15 +1,15 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { InformeModel } from '../../../../models/informe';
-import { InformeService } from '../../../../services/informe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TokenService } from '../../../../services/token.service';
-// Para Imprimir en PDF
-import  { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
-import { DatePipe } from '@angular/common';
+import { InformeModel } from '../../../../models/informe';
 import { NuevoUsuario } from '../../../../models/nuevo-usuario';
 import { AuthService } from '../../../../services/auth.service';
+import { InformeService } from '../../../../services/informe.service';
+import { TokenService } from '../../../../services/token.service';
+// Para Imprimir en PDF
+import { DatePipe } from '@angular/common';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,16 +17,16 @@ import Swal from 'sweetalert2';
   standalone: true,
   imports: [DatePipe],
   templateUrl: './informe-view.component.html',
-  styleUrl: './informe-view.component.css'
+  styleUrls: ['./informe-view.component.css']
 })
 export class InformeViewComponent implements OnInit {
 
   info: InformeModel | null = null;
   isAdmin: boolean = true;
-
   usuariosList: NuevoUsuario[] = [];
 
   @ViewChild('content') content!: ElementRef;
+  @ViewChild('firmas') firmas!: ElementRef;
 
   constructor(
     private informeService: InformeService,
@@ -51,10 +51,10 @@ export class InformeViewComponent implements OnInit {
         });
         this.volver();
       }
-    )
+    );
   }
 
-  cargarUsuarios(){
+  cargarUsuarios(): void {
     this.usuarioService.lista().subscribe(
       (data: NuevoUsuario[]) => {
         this.usuariosList = data;
@@ -65,11 +65,11 @@ export class InformeViewComponent implements OnInit {
           positionClass: 'toast-top-center'
         });
       }
-    )
+    );
   }
 
   public downloadPDF1(): void {
-    const estudiante = this.info?.estudiante;
+    const estudiante = this.info?.estudiante || 'informe';
     const DATA = this.content.nativeElement;
     Swal.fire({
       title: "¿Estás seguro?",
@@ -85,13 +85,11 @@ export class InformeViewComponent implements OnInit {
         html2canvas(DATA).then(canvas => {
           const fileWidth = 190;
           const fileHeight = canvas.height * fileWidth / canvas.width;
-
           const FILEURI = canvas.toDataURL('image/png');
           const PDF = new jsPDF('p', 'mm', 'a4');
           const position = 10;
           const leftMargin = 10;
-          PDF.addImage(FILEURI, 'PNG', leftMargin, position, fileWidth, fileHeight)
-
+          PDF.addImage(FILEURI, 'PNG', leftMargin, position, fileWidth, fileHeight);
           PDF.save(`informe_${estudiante}.pdf`);
         }).catch(error => {
           console.error('Error al generar el PDF:', error);
@@ -99,7 +97,6 @@ export class InformeViewComponent implements OnInit {
       }
     });
   }
-
 
   volver(): void {
     this.router.navigate(['/dashboard/informe']);

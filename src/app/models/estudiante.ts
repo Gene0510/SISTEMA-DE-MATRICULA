@@ -43,3 +43,38 @@ export class ViewEstudiante {
   edad_estudiante!: number;
   numero_estudiante!: string;
 }
+
+export class ViewEstudiantes {
+  id_estudiante!: number;
+  nombre_estudiante!: string;
+  cedula_estudiante!: string;
+  email_estudiante!: string;
+  edad_estudiante!: number;
+  numero_estudiante!: string;
+  representante: Representante = new Representante();
+  direccion: Direccion = new Direccion();
+  institucion: Institucion = new Institucion();
+
+}
+export class ViewRepresentante {
+  nombre_representante: string = '';
+  cedula_representante: string = '';
+  email_representante: string = '';
+  numero_representante: string = '';
+}
+
+export class ViewDireccion {
+  ciudad: string = '';
+  sector: string = '';
+  detalle: string = '';
+}
+
+
+export class ViewInstituccion {
+  nombre: string = '';
+  tipo: string = '';
+  nivel: string = '';
+  grado: string = '';
+  jornada: string = '';
+}
+

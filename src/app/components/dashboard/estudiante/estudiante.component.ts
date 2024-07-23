@@ -71,4 +71,5 @@ export class EstudianteComponent implements OnInit {
       event.preventDefault();
     }
   }
+  
 }

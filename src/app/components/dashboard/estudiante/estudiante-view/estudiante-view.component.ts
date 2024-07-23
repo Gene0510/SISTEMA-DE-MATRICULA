@@ -1,7 +1,8 @@
+//Se creo todo el ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ViewEstudiantes } from '../../../../models/estudiante';
+import { ViewEstudiante } from '../../../../models/estudiante';
 import { EstudianteService } from '../../../../services/estudiante.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { EstudianteService } from '../../../../services/estudiante.service';
 })
 export class EstudianteViewComponent implements OnInit {
 
-  estudiante: ViewEstudiantes = new ViewEstudiantes();
+  estudiante: ViewEstudiante = new ViewEstudiante();
 
   constructor(
     private estudianteService: EstudianteService,
@@ -23,7 +24,7 @@ export class EstudianteViewComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id_estudiante'];
     this.estudianteService.getEstudianteDetail(id).subscribe(
-      (data: ViewEstudiantes) => {
+      (data: ViewEstudiante) => {
         this.estudiante = data;
       },
       (err) => {

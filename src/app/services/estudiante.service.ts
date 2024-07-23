@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Estudiante, ViewEstudiantes } from '../models/estudiante';
+//se importa el modelo view estudiante
+import { Estudiante, ViewEstudiante } from '../models/estudiante';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,9 @@ export class EstudianteService {
   getAllEstudiante(): Observable<Estudiante[]> {
     return this.httpClient.get<Estudiante[]>(`${this.estudianteURL}`);
   }
-
-  getEstudianteDetail(id_estudiante: number): Observable<ViewEstudiantes> {
-    return this.httpClient.get<ViewEstudiantes>(`${this.estudianteURL}${id_estudiante}`);
+//se pone que el get por id devuelva el viewEstudiante
+  getEstudianteDetail(id_estudiante: number): Observable<ViewEstudiante> {
+    return this.httpClient.get<ViewEstudiante>(`${this.estudianteURL}${id_estudiante}`);
   }
 
   updateEstudiante(id_estudiante: number, estudiante: Estudiante): Observable<any> {

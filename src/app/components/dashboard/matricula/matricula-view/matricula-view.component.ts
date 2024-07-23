@@ -1,22 +1,22 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatriculaView } from '../../../../models/matricula';
-import { MatriculaService } from '../../../../services/matricula.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { HorarioService } from '../../../../services/horario.service';
-import { Horario } from '../../../../models/horario';
-import { NuevaAula } from '../../../../models/aula';
-import { AulaService } from '../../../../services/aula.service';
-import { Estudiante } from '../../../../models/estudiante';
-import { NuevaMateria } from '../../../../models/materia';
-import { NuevoUsuario } from '../../../../models/nuevo-usuario';
-import { EstudianteService } from '../../../../services/estudiante.service';
-import { MateriaService } from '../../../../services/materia.service';
-import { AuthService } from '../../../../services/auth.service';
-import Swal from 'sweetalert2';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+import { NuevaAula } from '../../../../models/aula';
+import { Estudiante } from '../../../../models/estudiante';
+import { Horario } from '../../../../models/horario';
 import { InformeModel } from '../../../../models/informe';
+import { NuevaMateria } from '../../../../models/materia';
+import { MatriculaView } from '../../../../models/matricula';
+import { NuevoUsuario } from '../../../../models/nuevo-usuario';
+import { AulaService } from '../../../../services/aula.service';
+import { AuthService } from '../../../../services/auth.service';
+import { EstudianteService } from '../../../../services/estudiante.service';
+import { HorarioService } from '../../../../services/horario.service';
+import { MateriaService } from '../../../../services/materia.service';
+import { MatriculaService } from '../../../../services/matricula.service';
 
 @Component({
   selector: 'app-matricula-view',
@@ -35,7 +35,28 @@ export class MatriculaViewComponent implements OnInit {
       cedula_estudiante: '',
       email_estudiante: '',
       edad_estudiante: 0,
-      numero_estudiante: ''
+      numero_estudiante: '',
+      //se implento el campo representante 
+      representante: {
+        nombre_representante: '',
+        cedula_representante: '',
+        email_representante: '',
+        numero_representante: '',
+      },
+      //se implento el campo direccion 
+      direccion: {
+        ciudad: '',
+        sector: '',
+        detalle: '',
+      },
+     //se implento el campo institucion 
+      institucion: { 
+        nombre: '',
+        tipo: '',
+        nivel: '',
+        grado: '',
+        jornada: '',
+      },
     },
     profesor: {
       id_usuario: 0,
